@@ -1,0 +1,304 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// BASIC LAYOUT - ALL MODE
+
+// MENU COLLAPSED
+.ant-menu-inline-collapsed {
+
+  .ant-menu-item,
+  .ant-menu-submenu {
+    height: 45px !important;
+    padding: 0 !important;
+
+    .ant-menu-item-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+  }
+
+  .ant-menu-item {
+    padding-inline: 16px !important;
+  }
+}
+
+// Custom Tag
+.ant-tag {
+  white-space: normal;
+}
+
+
+// TABEL
+.ant-table {
+  .ant-table-thead {
+    th {
+      background-color: #e9d5ff !important;
+      padding: 10px !important;
+      color: #3b0764 !important;
+      font-weight: 600;
+    }
+  }
+
+  .ant-table-tbody>tr>td {
+    padding: 7px 15px;
+    color: #1e1b4b;
+  }
+}
+
+.ant-table .column-action {
+  background-color: #f5f3ff !important;
+}
+
+.ant-table-thead .column-action {
+  background-color: #ddd6fe !important;
+  color: #3b0764 !important;
+  font-weight: 600;
+}
+
+.ant-table-tbody>tr:nth-child(odd)>td {
+  background-color: #faf5ff;
+}
+
+.ant-table-tbody>tr:nth-child(even)>td {
+  background-color: #ffffff;
+}
+
+.ant-table-tbody>tr:hover>td {
+  background-color: #f3e8ff !important;
+  transition: background 0.2s ease;
+}
+
+//PINK CARD HEAD
+.pink-card-head .ant-card-head {
+  background: #e9d5ff !important;
+}
+
+//BUTTON
+.ant-btn-group {
+  border: none;
+}
+
+.ant-btn-group .ant-btn {
+  border: none;
+}
+
+
+// AddonAfter Field Inputan
+.ant-input-group-addon {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6, #1d4ed8) !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer;
+
+  &:hover {
+    background: linear-gradient(135deg, #a78bfa, #60a5fa, #2563eb) !important;
+    box-shadow: 0 0 10px rgba(96, 165, 250, 0.5),
+      0 0 20px rgba(139, 92, 246, 0.4); // glow biru-ungu
+    transform: translateY(-1px);
+
+    .anticon {
+      color: #f0f9ff !important;
+      transform: scale(1.1);
+    }
+  }
+
+}
+
+// ANT-MODAL
+.ant-modal {
+  border-radius: 18px !important;
+  will-change: transform, opacity;
+
+  // ✨ Animasi masuk modal
+  animation: modal-pop-in 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+
+  .ant-modal-content {
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+
+    .ant-modal-close {
+      top: 14px !important;
+      right: 18px !important;
+      color: rgba(255, 255, 255, 0.849) !important;
+      transition: all 0.25s ease;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+
+      &:hover {
+        color: #fff !important;
+        background: rgba(255, 255, 255, 0.2);
+        transform: rotate(90deg) scale(1.1);
+      }
+
+      .ant-modal-close-x {
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .ant-modal-header {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 16px 24px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .ant-modal-title {
+      color: white !important;
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: 0.3px;
+    }
+  }
+}
+
+.ant-modal-mask {
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 20, 0.5) !important;
+}
+
+
+// BASIC LAYOUT - LIGHT MODE
+
+//SIDER
+.ant-layout-sider-light {
+  background: linear-gradient(to bottom,
+      #e9d5ff,
+      /* purple-200 */
+      #f3e8ff,
+      /* purple-100 */
+      #bfdbfe
+      /* blue-100 */
+    ) !important;
+}
+
+/* Hapus background default menu */
+.ant-menu-inline {
+  background: transparent !important;
+}
+
+.ant-menu-light {
+
+  /* Menu & submenu text */
+  .ant-menu-item,
+  .ant-menu-item a,
+  .ant-menu-submenu-title {
+    color: #581c87 !important;
+  }
+
+  .module-grouping-title {
+    color: #6B21A8;
+    /* purple-800 */
+  }
+
+  /* Hover state */
+  .ant-menu-item a:hover,
+  .ant-menu-submenu-title:hover,
+  .ant-menu-light .ant-menu-item:hover {
+    color: #7e22ce !important;
+    font-weight: 500;
+  }
+
+  /* Selected item */
+  .ant-menu-item-selected,
+  .ant-menu-item-selected a {
+    background-color: #e9d5ff !important;
+    color: #581c87 !important;
+    font-weight: 500;
+  }
+
+  /* Submenu */
+  .ant-menu-submenu {
+    color: #000 !important;
+  }
+
+  .ant-menu-submenu-selected {
+    color: #7e22ce !important;
+  }
+
+  /* Active indicator */
+  .ant-menu-item-selected::after {
+    border-right: 3px solid #581c87 !important;
+  }
+
+  .ant-menu-submenu .ant-menu-submenu-popup a {
+    color: #7e22ce !important;
+  }
+}
+
+// BASIC LAYOUT - DARK MODE
+
+// SIDER  
+.ant-layout-sider-dark {
+  background: linear-gradient(to bottom,
+      #2e1065,
+      /* purple-950 */
+      #4c1d95,
+      /* purple-900 */
+      #1e1b4b
+      /* indigo-950 */
+    ) !important;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: #e9d5ff !important;
+}
+
+/* Remove default menu bg */
+.ant-menu {
+  background: transparent !important;
+}
+
+.ant-menu-dark {
+
+  .module-grouping-title {
+    color: #EAB308;
+  }
+
+  /* Menu text */
+  .ant-menu-item,
+  .ant-menu-item a,
+  .ant-menu-submenu-title {
+    color: #c4b5fd !important;
+    /* pastel purple */
+  }
+
+  /* Hover */
+  .ant-menu-item:hover a,
+  .ant-menu-submenu-title:hover {
+    color: #f5f3ff !important;
+    font-weight: 500;
+  }
+
+  /* Selected */
+  .ant-menu-item-selected,
+  .ant-menu-item-selected a {
+    /* violet-400 soft */
+    color: #f5f3ff !important;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Active indicator */
+  .ant-menu-item-selected::after {
+    border-right: 3px solid #a78bfa !important;
+  }
+
+  /* Submenu */
+  .ant-menu-submenu {
+    color: #ddd6fe !important;
+  }
+
+  .ant-menu-submenu-selected>.ant-menu-submenu-title {
+    color: #f5f3ff !important;
+  }
+}

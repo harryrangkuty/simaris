@@ -1,0 +1,12 @@
+@use "tailwindcss/base";
+@use "tailwindcss/components";
+@use "tailwindcss/utilities";
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+
