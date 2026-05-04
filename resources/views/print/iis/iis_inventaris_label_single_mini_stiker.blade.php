@@ -12,108 +12,117 @@
             margin: 0;
             padding: 0;
             font-family: Helvetica, Arial, sans-serif;
+            width: 50mm;
+            height: 30mm;
+            background-color: white;
+            box-sizing: border-box;
+            padding-top: 1mm;
+            padding-bottom: 1mm;
+        }
+
+        table {
+            width: 50mm;
+            height: 28mm;
+            border-collapse: collapse;
+            table-layout: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        td {
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            vertical-align: middle;
+            overflow: hidden;
         }
 
         .header {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            border-bottom: 0.5px solid #000;
-            font-size: 5pt;
-            text-align: center;
-            padding: 0;
-            margin: 0;
-            letter-spacing: 0.5px;
+            height: 4.5mm;
+            font-size: 6.5pt;
+            font-weight: normal;
+            color: #000;
         }
 
-        .header table {
-            width: 100%;
-            border-collapse: collapse;
+        .divider-row {
+            height: 0.2mm;
+            line-height: 0;
+            font-size: 0;
         }
 
-        .header td {
-            border-right: 0.5px solid #000;
-            padding: 1.5px;
-            text-align: center;
-            width: 50%;
-        }
-
-        .header td:last-child {
-            border-right: none;
+        .divider {
+            background: #000;
+            height: 0.2mm;
         }
 
         .content {
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            line-height: 1;
+            height: 18.6mm;
+            position: relative;
+        }
+
+        .qr-wrapper {
+            display: block;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .qr-code {
-            width: 30mm;
-            height: 30mm;
+            width: 18mm;
+            height: 18mm;
             display: block;
-            margin: 0 auto;
+            margin: -2mm auto;
+            transform: scale(1.2);
+            transform-origin: center;
         }
 
         .footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            border-top: 0.5px solid #000;
-            font-size: 5pt;
-            text-align: center;
-            padding: 0;
-            margin: 0;
-            letter-spacing: 0.5px;
-        }
-
-        .footer table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .footer td {
-            border-right: 0.5px solid #000;
-            padding: 1.5px;
-            text-align: center;
-            width: 50%;
-        }
-
-        .footer td:last-child {
-            border-right: none;
+            height: 4.5mm;
+            font-size: 6.5pt;
+            font-weight: normal;
+            color: #000;
         }
     </style>
 </head>
 
 <body>
-    <div>
-        <div class="header">
-            <table cellspacing="0">
-                <tr>
-                    <td>
-                        {{ $data->qr_code_no }}
+    <table>
+        <!-- Header Section -->
+        <tr>
+            <td class="header">
+                {{ $data->qr_code_no }}
+                @if ($data->data_source === 'system' && !empty($data->category_name))
+                    - {{ $data->category_name }}
+                @endif
+            </td>
+        </tr>
 
-                        @if ($data->data_source === 'system' && !empty($data->category_name))
-                            - {{ $data->category_name }}
-                        @endif
-                    </td>
-                </tr>
-            </table>
-        </div>
+        <!-- Top Divider -->
+        <tr class="divider-row">
+            <td class="divider"></td>
+        </tr>
 
-        <div class="content">
-            <img src="data:image/png;base64,{{ $qrBase64 }}" class="qr-code">
-        </div>
+        <!-- QR Code Section -->
+        <tr>
+            <td class="content">
+                <img src="data:image/png;base64,{{ $qrBase64 }}" class="qr-code">
+            </td>
+        </tr>
 
-        <div class="footer">
-            <table cellspacing="0">
-                <tr>
-                    <td>RSU BUNDA THAMRIN</td>
-                </tr>
-            </table>
-        </div>
-    </div>
+        <!-- Bottom Divider -->
+        <tr class="divider-row">
+            <td class="divider"></td>
+        </tr>
+
+        <!-- Footer Section -->
+        <tr>
+            <td class="footer">
+                RSU BUNDA THAMRIN
+            </td>
+        </tr>
+    </table>
 </body>
 
 </html>

@@ -16,121 +16,115 @@
 
         .page {
             width: 50mm;
-            height: 30mm;
-            page-break-after: always
-        }
-
-        .header {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            border-bottom: 0.5px solid #000;
-            font-size: 5pt;
-            text-align: center;
-            padding: 0;
-            margin: 0;
-            letter-spacing: 0.5px;
-        }
-
-        .header table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .header td {
-            border-right: 0.5px solid #000;
-            padding: 1.5px;
-            text-align: center;
-            width: 50%;
-        }
-
-        .header td:last-child {
-            border-right: none;
-        }
-
-        .content {
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            line-height: 1;
-        }
-
-        .qr-code {
-            width: 30mm;
-            height: 30mm;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            border-top: 0.5px solid #000;
-            font-size: 5pt;
-            text-align: center;
-            padding: 0;
-            margin: 0;
-            letter-spacing: 0.5px;
-        }
-
-        .footer table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .footer td {
-            border-right: 0.5px solid #000;
-            padding: 1.5px;
-            text-align: center;
-            width: 50%;
-        }
-
-        .footer td:last-child {
-            border-right: none;
+            height: 28mm;
+            background-color: white;
+            box-sizing: border-box;
+            padding-top: 1mm;
+            padding-bottom: 1mm;
+            page-break-after: always;
         }
 
         .page:last-child {
             page-break-after: auto;
+        }
+
+        table {
+            width: 50mm;
+            height: 28mm;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        td {
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            vertical-align: middle;
+            overflow: hidden;
+        }
+
+        .header {
+            height: 4.5mm;
+            font-size: 6.5pt;
+            font-weight: normal;
+            color: #000;
+        }
+
+        .divider-row {
+            height: 0.2mm;
+            line-height: 0;
+            font-size: 0;
+        }
+
+        .divider {
+            background: #000;
+            height: 0.2mm;
+        }
+
+        .content {
+            height: 18.6mm;
+        }
+
+        .qr-code {
+            width: 18mm;
+            height: 18mm;
+            display: block;
+            margin: -2mm auto;
+            transform: scale(1.2);
+            transform-origin: center;
+        }
+
+        .footer {
+            height: 4.5mm;
+            font-size: 6.5pt;
+            font-weight: normal;
+            color: #000;
         }
     </style>
 </head>
 
 <body>
 
-    @foreach ($items as $item)
-        <div class="page">
+@foreach ($items as $item)
+    <div class="page">
+        <table>
+            <!-- Header -->
+            <tr>
+                <td class="header">
+                    {{ $item['data']->qr_code_no }}
+                    @if ($item['data']->data_source === 'system' && !empty($item['data']->category_name))
+                        - {{ $item['data']->category_name }}
+                    @endif
+                </td>
+            </tr>
 
-            <div>
-                <div class="header">
-                    <table cellspacing="0">
-                        <tr>
-                            <td>
-                                {{ $item['data']->qr_code_no }}
-                                
-                                @if ($item['data']->data_source === 'system' && !empty($item['data']->category_name))
-                                    - {{ $item['data']->category_name }}
-                                @endif
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+            <!-- Divider -->
+            <tr class="divider-row">
+                <td class="divider"></td>
+            </tr>
 
-                <div class="content">
+            <!-- QR -->
+            <tr>
+                <td class="content">
                     <img src="data:image/png;base64,{{ $item['qrBase64'] }}" class="qr-code">
-                </div>
+                </td>
+            </tr>
 
-                <div class="footer">
-                    <table cellspacing="0">
-                        <tr>
-                            <td>RSU BUNDA THAMRIN</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+            <!-- Divider -->
+            <tr class="divider-row">
+                <td class="divider"></td>
+            </tr>
 
-        </div>
-    @endforeach
+            <!-- Footer -->
+            <tr>
+                <td class="footer">
+                    RSU BUNDA THAMRIN
+                </td>
+            </tr>
+        </table>
+    </div>
+@endforeach
+
 </body>
 
 </html>
