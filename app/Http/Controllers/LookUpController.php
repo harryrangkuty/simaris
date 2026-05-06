@@ -120,7 +120,9 @@ class LookUpController extends Controller
                     $q->where('data_source', '!=', 'system')
                         ->orWhere(function ($qq) {
                             $qq->where('data_source', 'system')
-                                ->where('print_count', '>', 0);
+                                ->where('print_count', '>', 0)
+                                ->where('purchase_year', '<', 2026)
+                                ->whereNull('po_number');
                         });
                 })
                 ->whereNotExists(function ($q) use ($blockedStatuses, $request) {
@@ -145,7 +147,9 @@ class LookUpController extends Controller
                     $q->where('data_source', '!=', 'system')
                         ->orWhere(function ($qq) {
                             $qq->where('data_source', 'system')
-                                ->where('print_count', '>', 0);
+                                ->where('print_count', '>', 0)
+                                ->where('purchase_year', '<', 2026)
+                                ->whereNull('po_number');
                         });
                 })
                 ->whereNotExists(function ($q) use ($blockedStatuses, $request) {
